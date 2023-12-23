@@ -11,13 +11,14 @@ class User
     {
         global $db;
 
-        $result = $db->query("SELECT * FROM users WHERE users_id = '$id'");
+        $result = $db->query("SELECT * FROM users WHERE id_user = '$id'");
         $user = $result->fetch_assoc();
 
-        $this->id = $user['users_id'];
-        $this->email = $user['users_email'];
-        $this->username = $user['users_username'];
-        $this->password = $user['users_password'];
+        $this->id = $user['id_user'];
+        $this->email = $user['username'];
+        $this->username = $user['email'];
+        $this->password = $user['password'];
+        $this->photo = $user['photo'];
     }
 
     static function getAll()
