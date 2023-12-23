@@ -6,10 +6,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= ucfirst($page) ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="<?= PATH ?>assets/css/style.css">
+    
 </head>
 <body>
-    <h1><?= ucfirst($page) ?> View</h1>
+    <!-- <h1><?= ucfirst($page) ?> View</h1> -->
 
     <main>
         <?php include_once 'views/' . $page . '_view.php'; ?>
