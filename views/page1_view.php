@@ -5,10 +5,10 @@ if(!isset($_SESSION['id_user'])){
 ?>
 
 <!-- component -->
-<div class="h-screen w-full bg-white relative flex overflow-hidden">
+<div class="w-full bg-white relative flex overflow-hidden" style="height: 200vh;"> 
 
   <!-- Sidebar -->
-    <aside class="h-full w-16 flex flex-col space-y-10 items-center justify-center relative bg-gray-800 text-white">
+    <aside class="h-full w-16 flex flex-col space-y-10 pt-20 items-center gap-8 relative bg-gray-800 text-white">
 
     <!-- Home -->
         <a href="<?= PATH ?>index.php?page=page1">
