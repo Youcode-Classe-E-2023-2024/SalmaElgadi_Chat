@@ -69,11 +69,12 @@ class User
         }
     }
 
-    public function send_invitation()
+    public function send_invitation($id_me, $id_user)
     {
         global $db;
-        
-
+        $stmt = $db->prepare("INSERT INTO invitation (id_user1, id_user2) VALUES ('$id_me','$id_user')");
+        $result = $stmt->execute();
+        return $result;
     }
 
     // function edit()
