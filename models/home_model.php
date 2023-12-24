@@ -10,5 +10,5 @@
 //$user->edit();
 //dd($user);
 
-$users = User::getAll();
+// $users = User::getAll();
 //dd($users);
