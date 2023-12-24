@@ -1,6 +1,6 @@
 <div class="login-box">
   <h2>Register</h2>
-  <form>
+  <form method="post" action="<?= PATH ?>index.php?page=register">
     <div class="user-box">
       <input type="text" name="username" required="">
       <label>User name</label>
@@ -17,12 +17,13 @@
       <input type="text" name="photo" required="">
       <label>Photo</label>
     </div>
-    <a href="#">
+    <!-- <a href="#"> -->
       <span></span>
       <span></span>
       <span></span>
       <span></span>
-      Register
-    </a>
+      <button type="submit" name="submit">Register</button>
+      
+    <!-- </a> -->
   </form>
 </div>
