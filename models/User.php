@@ -22,7 +22,7 @@ class User
         // $this->photo = $user['photo'];
     }
 
-    static function getAll()
+    public function getAllUsers()
     {
         global $db;
         $result = $db->query("SELECT * FROM users");
@@ -67,6 +67,13 @@ class User
         } else {
             return false;
         }
+    }
+
+    public function send_invitation()
+    {
+        global $db;
+        
+
     }
 
     // function edit()
