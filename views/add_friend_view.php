@@ -112,7 +112,7 @@ if(!isset($_SESSION['id_user'])){
                 <span class="text-gray-400 text-sm"><?php echo $user['date_u']; ?></span>
                 <span class="text-emerald-400">
                     <form action="index.php?page=add_friend" method="post">
-                        <input type="hidden" name="myid" value="<?php echo $_SESSION['id_user'] ?>">
+                        <input type="hidden" name="myid" value="<?php echo $_SESSION['id_user']; ?>">
                         <input type="hidden" name="friendid" value="<?php echo $user['id_user']; ?>">
                         <button class="py-2 px-4 bg-blue-300 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" name="addfriend">
                             add 
