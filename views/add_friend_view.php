@@ -5,10 +5,10 @@ if(!isset($_SESSION['id_user'])){
 ?>
 
 <!-- component -->
-<div class="h-screen w-full bg-white relative flex overflow-hidden">
+<div class="w-full bg-white relative flex overflow-hidden" style="height: 200vh;">
 
   <!-- Sidebar -->
-    <aside class="h-full w-16 flex flex-col space-y-10 items-center justify-center relative bg-gray-800 text-white">
+  <aside class="h-full w-16 flex flex-col space-y-10 pt-20 items-center gap-8 relative bg-gray-800 text-white">
 
     <!-- Home -->
         <a href="<?= PATH ?>index.php?page=page1">
@@ -103,11 +103,17 @@ if(!isset($_SESSION['id_user'])){
         <!--  -->
 
         <!-- profiles -->
-        <section class="w-48 mx-auto bg-[#20354b] rounded-2xl px-8 flex flex-col justify-center py-6 shadow-lg">
+        <?php
+            if (!empty($users)) {
+            foreach ($users as $user) {
+        ?>
+        <section class="w-72 mx-auto bg-[#20354b] rounded-2xl px-8 flex flex-col justify-center py-6 shadow-lg">
             <div class="flex items-center justify-between">
-                <span class="text-gray-400 text-sm">date</span>
+                <span class="text-gray-400 text-sm"><?php echo $user['date_u']; ?></span>
                 <span class="text-emerald-400">
                     <form action="index.php?page=add_friend" method="post">
+                        <input type="hidden" name="myid" value="<?php echo $_SESSION['id_user'] ?>">
+                        <input type="hidden" name="friendid" value="<?php echo $user['id_user']; ?>">
                         <button class="py-2 px-4 bg-blue-300 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" name="addfriend">
                             add 
                         </button>
@@ -120,9 +126,12 @@ if(!isset($_SESSION['id_user'])){
             </div>
 
             <div class="mt-8 ">
-                <h2 class="text-yellow-400 font-bold text-2xl tracking-wide">Jonathan <br/> Smith</h2>
+                <h2 class="text-yellow-400 font-bold text-2xl tracking-wide"><?php echo $user['username']; ?></h2>
             </div>
         </section>
+        <?php
+            }}
+        ?>
         
         <!--  -->
 
