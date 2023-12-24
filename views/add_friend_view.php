@@ -103,13 +103,15 @@ if(!isset($_SESSION['id_user'])){
         <!--  -->
 
         <!-- profiles -->
-        <section class="w-64 mx-auto bg-[#20354b] rounded-2xl px-8 flex flex-col justify-center py-6 shadow-lg">
+        <section class="w-48 mx-auto bg-[#20354b] rounded-2xl px-8 flex flex-col justify-center py-6 shadow-lg">
             <div class="flex items-center justify-between">
-                <span class="text-gray-400 text-sm">2d ago</span>
+                <span class="text-gray-400 text-sm">date</span>
                 <span class="text-emerald-400">
-                    <button class="py-2 px-4 bg-blue-300 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                        add 
-                    </button>
+                    <form action="index.php?page=add_friend" method="post">
+                        <button class="py-2 px-4 bg-blue-300 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75" name="addfriend">
+                            add 
+                        </button>
+                    </form>
                 </span>
             </div>
 
@@ -121,6 +123,7 @@ if(!isset($_SESSION['id_user'])){
                 <h2 class="text-yellow-400 font-bold text-2xl tracking-wide">Jonathan <br/> Smith</h2>
             </div>
         </section>
+        
         <!--  -->
 
     </main>
