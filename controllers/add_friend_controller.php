@@ -10,13 +10,6 @@ if(isset($_POST['addfriend']))
 {
     $id_me = $_POST['myid'];
     $id_user = $_POST['friendid'];
-    if($User->send_invitation($id_me, $id_user))
-    {
-        
-    }
-
-}
-else
-{
+    $User->send_invitation($id_me, $id_user);
 
 }
