@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= ucfirst($page) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-
+    <script src="<?= PATH ?>assets/js/main.js"></script>
     <link rel="stylesheet" href="<?= PATH ?>assets/css/style.css">
     
 </head>
@@ -17,7 +17,7 @@
         <?php include_once 'views/' . $page . '_view.php'; ?>
     </main>
 
-    <footer></footer>
-    <script src="<?= PATH ?>assets/js/main.js"></script>
+    <footer>
+    </footer>
 </body>
 </html>
