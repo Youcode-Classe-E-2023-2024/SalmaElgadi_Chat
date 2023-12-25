@@ -5,10 +5,10 @@ if(!isset($_SESSION['id_user'])){
 ?>
 
 <!-- component -->
-<div class="w-full bg-white relative flex overflow-hidden" style="height: 200vh;"> 
+<div class="fixed w-full bg-white flex overflow-hidden" style="height: 200vh;"> 
 
   <!-- Sidebar -->
-    <aside class="h-full w-16 flex flex-col space-y-10 pt-20 items-center gap-8 relative bg-gray-800 text-white">
+    <aside class="fixed h-full w-16 flex flex-col space-y-10 pt-20 items-center z-10	 justify-center bg-gray-800 text-white">
 
     <!-- Home -->
         <a href="<?= PATH ?>index.php?page=page1">
@@ -20,7 +20,7 @@ if(!isset($_SESSION['id_user'])){
         </a>
         
         <!-- friend -->
-        <a href="<?= PATH ?>index.php?page=friend">
+        <a href="index.php?page=friend">
            <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
         </div> 
@@ -65,9 +65,9 @@ if(!isset($_SESSION['id_user'])){
 
     </aside>
 
-    <div class="w-full h-full flex flex-col justify-between">
+    <div class="w-full fixed h-full flex flex-col justify-between"  style="height: 200vh;">
     <!-- Header -->
-    <header class="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-gray-800">
+    <header class="fixed h-16 w-full flex items-center justify-end px-5 space-x-10 bg-gray-800">
       <!-- Informação -->
       <div class="flex flex-shrink-0 items-center space-x-4 text-white">
         
@@ -83,12 +83,21 @@ if(!isset($_SESSION['id_user'])){
         <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
       </div>
     </header>
+    
 
     
-    <main class="max-w-full h-full flex flex-col relative overflow-y-hidden">
-    <h1 class="text-4xl text-yellow-400 py-4 text-center font-bold">Your rooms</h1>
+    <main class="max-w-full ml-34 h-full flex flex-col gap-5 py-24 relative overflow-y-hidden">
+    <h1 class="text-4xl text-yellow-400  text-center font-bold">Your rooms</h1>
       <!-- Container -->
-      <div class="h-full w-full m-4 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">
+      <div class="h-full  mx-24 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 ">
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
+        <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
         <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
         <div class="w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
       </div>
