@@ -5,23 +5,23 @@ if(!isset($_SESSION['id_user'])){
 ?>
 
 <!-- component -->
-<div class="w-full bg-white relative flex overflow-hidden" style="height: 200vh;">
+<div class="fixed w-full bg-white flex overflow-hidden" style="height: 200vh;"> 
 
   <!-- Sidebar -->
-  <aside class="h-full w-16 flex flex-col space-y-10 pt-20 items-center gap-8 relative bg-gray-800 text-white">
+    <aside class="fixed h-full w-16 flex flex-col space-y-10 pt-20 items-center z-10	 justify-center bg-gray-800 text-white">
 
     <!-- Home -->
         <a href="<?= PATH ?>index.php?page=page1">
             <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-            </svg>
+              </svg>
             </div>
         </a>
         
-        <!-- Friend -->
-        <a href="<?= PATH ?>index.php?page=friend">
-        <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+        <!-- friend -->
+        <a href="index.php?page=friend">
+           <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
         </div> 
         </a>
@@ -65,9 +65,9 @@ if(!isset($_SESSION['id_user'])){
 
     </aside>
 
-    <div class="w-full h-full flex flex-col justify-between">
+    <div class="w-full fixed h-full flex flex-col justify-between"  style="height: 200vh;">
     <!-- Header -->
-    <header class="h-16 w-full flex items-center relative justify-end px-5 space-x-10 bg-gray-800">
+    <header class="fixed h-16 w-full flex items-center justify-end px-5 space-x-10 bg-gray-800">
       <!-- Informação -->
       <div class="flex flex-shrink-0 items-center space-x-4 text-white">
         
@@ -83,9 +83,10 @@ if(!isset($_SESSION['id_user'])){
         <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"></div>
       </div>
     </header>
+    
 
     
-    <main class="max-w-full h-full flex flex-col relative overflow-y-hidden">
+    <main class="max-w-full ml-34 h-full flex flex-col gap-5 py-24 relative overflow-y-hidden">
     <h1 class="text-4xl text-yellow-400 py-4 text-center font-bold">My Friends</h1>
 
     </main>
