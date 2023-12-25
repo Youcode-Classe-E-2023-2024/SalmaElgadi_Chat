@@ -16,10 +16,10 @@ class Invitation
         return $result;
     }
 
-    public function getInvitation($connectedUserId)
+    public function getInvitation()
     {
         global $db;
-        $result = $db->query("SELECT * FROM users WHERE id_user IN (SELECT id_user1 FROM invitation WHERE id_user2 = '$connectedUserId' AND statut='0')");
+        $result = $db->query("SELECT username, email FROM users WHERE id_user IN (SELECT id_user1 FROM invitation WHERE statut='0')");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
