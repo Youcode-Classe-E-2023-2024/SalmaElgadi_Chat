@@ -127,7 +127,7 @@ if(!isset($_SESSION['id_user'])){
             </div>
 
             <div class="mt-8 ">
-                <h2 class="text-yellow-400 font-bold text-2xl tracking-wide"><?php echo $user['username']; ?></h2>
+                <h2 class="text-yellow-400 font-bold text-2xl tracking-wide username"><?php echo $user['username']; ?></h2>
             </div>
         </section>
         <?php
@@ -140,4 +140,18 @@ if(!isset($_SESSION['id_user'])){
     </div>
 
 </div>
+<script>
+    const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', filterOptions);
+
+function filterOptions() {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    document.querySelectorAll('.username').forEach(option => {
+        const optionText = option.textContent.toLowerCase();
+        option.closest('section').style.display = optionText.includes(searchTerm) ? 'block' : 'none';
+    });
+}
+
+</script>
 
