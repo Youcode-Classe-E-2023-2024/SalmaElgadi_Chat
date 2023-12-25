@@ -11,15 +11,6 @@ class User
     public function __construct()
     {
         global $db;
-
-        // $result = $db->query("SELECT * FROM users WHERE id_user = '$id_user'");
-        // $user = $result->fetch_assoc();
-
-        // $this->id_user = $user['id_user'];
-        // $this->email = $user['username'];
-        // $this->username = $user['email'];
-        // $this->password = $user['password'];
-        // $this->photo = $user['photo'];
     }
 
     public function getAllUsers()
