@@ -158,7 +158,13 @@ if(!isset($_SESSION['id_user'])){
                 <tr class="border-b hover:bg-orange-100 bg-gray-100">
                     <td class="p-3 px-5"><?php echo $ami['username'] ;?></td>
                     <td class="p-3 px-5"><?php echo $ami['email'] ;?></td>
-                    <td class="p-3 px-5 flex justify-end"><button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Supprimer</button></td>
+                    <td class="p-3 px-5 flex justify-end">
+                        <form action="<?= PATH ?>index.php?page=friend" method="post">
+                            <input type="hidden" name="myid" value="<?php echo $_SESSION['id_user']; ?>">
+                            <input type="hidden" name="friendid" value="<?php echo $invitation['id_user'] ; ?>">
+                            <button type="submit" name="supprimer" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Supprimer</button></td>
+                        </form> 
+                    </td>
                 </tr>
                 <?php
                 }}else{?>
