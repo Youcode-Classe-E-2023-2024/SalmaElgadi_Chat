@@ -19,10 +19,9 @@ class Invitation
     public function getInvitation($myId)
     {
     global $db;
-    $result = $db->query("SELECT *
-                        FROM users
-                        JOIN invitation ON id_user = id_sender
-                        WHERE statut = '0' AND id_receiver = $myId;");
+    $result = $db->query("SELECT * FROM users
+                        INNER JOIN invitation ON users.id_user = invitation.id_sender
+                        WHERE invitation.statut = '0' AND id_receiver = $myId;");
     return $result->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -39,15 +38,6 @@ class Invitation
             $stmtInsertFriend->bind_param('ii', $id_user, $id_me);
             $resultInsertFriend = $stmtInsertFriend->execute();
             $stmtInsertFriend->close();
-
-            if ($resultInsertFriend) {
-                $stmtDeleteInvitation = $db->prepare("DELETE FROM invitation WHERE id_receiver=? AND id_sender=? AND statut ='1'");
-                $stmtDeleteInvitation->bind_param('ii', $id_me, $id_user);
-                $stmtDeleteInvitation->execute();
-                $stmtDeleteInvitation->close();
-            } else {
-                die("Erreur");
-            }
         }
 
         return $resultUpdateInvitation;
