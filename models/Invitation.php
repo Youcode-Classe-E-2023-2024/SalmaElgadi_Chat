@@ -41,7 +41,7 @@ class Invitation
             $stmtInsertFriend->close();
 
             if ($resultInsertFriend) {
-                $stmtDeleteInvitation = $db->prepare("DELETE FROM invitation WHERE id_receiver=? AND id_sender=?");
+                $stmtDeleteInvitation = $db->prepare("DELETE FROM invitation WHERE id_receiver=? AND id_sender=? AND statut ='1'");
                 $stmtDeleteInvitation->bind_param('ii', $id_me, $id_user);
                 $stmtDeleteInvitation->execute();
                 $stmtDeleteInvitation->close();
