@@ -49,7 +49,7 @@ class Invitation
        $stmt = $db->prepare("DELETE FROM invitation  WHERE id_receiver='$id_me' AND id_sender='$id_user'");
        $result = $stmt->execute();
        return $result;
-    }
+    }   
 
     public function getFriends($myId)
     {
