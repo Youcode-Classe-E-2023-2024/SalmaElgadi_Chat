@@ -7,37 +7,38 @@ class Room
         
     }
     
-    public function addRoom($title,$created_by, $selectedUsers)
+    public function addRoom($title, $created_by, $selectedUsers)
     {
-        {
-            global $db;
+        global $db;
 
-            $db->begin_transaction();
-    
-            $stmt1 = $db->prepare("INSERT INTO rooms (title, created_by) VALUES (?, ?)");
-            $stmt1->bind_param("si", $title, $created_by);
-    
-            if (!$stmt1->execute()) {
+        $db->begin_transaction();
+
+        $stmt1 = $db->prepare("INSERT INTO rooms (title, created_by) VALUES (?, ?)");
+        $stmt1->bind_param("si", $title, $created_by);
+
+        if (!$stmt1->execute()) {
+            $db->rollback();
+            return false;
+        }
+
+        $roomId = $db->insert_id;
+
+        $stmt1->close();
+
+        foreach ($selectedUsers as $userId) {
+            $stmt2 = $db->prepare("INSERT INTO room (id_r, id_u) VALUES (?, ?)");
+            $stmt2->bind_param("ii", $roomId, $userId);
+
+            if (!$stmt2->execute()) {
                 $db->rollback();
                 return false;
             }
-    
-            $ticketId = $db->insert_id;
-    
-    
-            foreach ($selectedUsers as $userId) {
-                $stmt2 = $db->prepare("INSERT INTO room (id_r, id_u) VALUES (?, ?)");
-                $stmt2->bind_param("ii", $ticketId, $userId);
-    
-                if (!$stmt2->execute()) {
-                    $db->rollback();
-                    return false;
-                }
-    
-            }
-            return true;
+            
+            $stmt2->close();
         }
-    
+
+        $db->commit();
+        return true;
     }
 
 }
