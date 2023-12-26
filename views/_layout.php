@@ -49,7 +49,7 @@
         </a>
 
         <!-- Add room -->
-        <a href="<?= PATH ?>index.php?page=add_room">
+        <a href="<?= PATH ?>index.php?page=room">
           <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
               <img src="<?= PATH ?>assets/image/room.png" alt="">
             </div>  
@@ -114,6 +114,6 @@
     }
     ?>
     </div>
-    
+
 </body>
 </html>
