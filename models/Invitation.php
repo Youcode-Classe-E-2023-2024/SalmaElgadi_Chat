@@ -16,18 +16,41 @@ class Invitation
         return $result;
     }
 
-    public function getInvitation()
+    public function getInvitation($myId)
     {
-        global $db;
-        $result = $db->query("SELECT * FROM users WHERE id_user IN (SELECT id_sender FROM invitation WHERE statut='0')");
-        return $result->fetch_all(MYSQLI_ASSOC);
+    global $db;
+    $result = $db->query("SELECT *
+                        FROM users
+                        JOIN invitation ON id_user = id_sender
+                        WHERE statut = '0' AND id_receiver = $myId;");
+    return $result->fetch_all(MYSQLI_ASSOC);
     }
+
     public function acceptInvitation($id_me, $id_user)
     {
         global $db;
-        $stmt = $db->prepare("UPDATE invitation SET statut='1' WHERE id_receiver='$id_me' AND id_sender='$id_user'");
-        $result = $stmt->execute();
-        return $result;
+        $stmtUpdateInvitation = $db->prepare("UPDATE invitation SET statut='1' WHERE id_receiver=? AND id_sender=?");
+        $stmtUpdateInvitation->bind_param('ii', $id_me, $id_user);
+        $resultUpdateInvitation = $stmtUpdateInvitation->execute();
+        $stmtUpdateInvitation->close();
+
+        if ($resultUpdateInvitation) {
+            $stmtInsertFriend = $db->prepare("INSERT INTO friend (id_user1, id_user2) VALUES (?, ?)");
+            $stmtInsertFriend->bind_param('ii', $id_user, $id_me);
+            $resultInsertFriend = $stmtInsertFriend->execute();
+            $stmtInsertFriend->close();
+
+            if ($resultInsertFriend) {
+                $stmtDeleteInvitation = $db->prepare("DELETE FROM invitation WHERE id_receiver=? AND id_sender=?");
+                $stmtDeleteInvitation->bind_param('ii', $id_me, $id_user);
+                $stmtDeleteInvitation->execute();
+                $stmtDeleteInvitation->close();
+            } else {
+                die("Erreur");
+            }
+        }
+
+        return $resultUpdateInvitation;
     }
 
     public function deleteInvitation($id_me, $id_user)
@@ -38,10 +61,33 @@ class Invitation
        return $result;
     }
 
-    public function getFriends()
+    public function getFriends($myId)
     {
         global $db;
-        $result = $db->query("SELECT * FROM users WHERE id_user IN (SELECT id_sender FROM invitation WHERE statut='1')");
-        return $result->fetch_all(MYSQLI_ASSOC);
+
+        $query = "SELECT * FROM users 
+                WHERE id_user IN (
+                    SELECT id_user1 FROM friend WHERE id_user2 = ?
+                    UNION
+                    SELECT id_user2 FROM friend WHERE id_user1 = ?
+                )";
+
+        $stmt = $db->prepare($query);
+        $stmt->bind_param('ii', $myId, $myId);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $friends = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt->close();
+
+        return $friends;
+    }
+    public function deleteFriend($id_me, $id_user)
+    {
+        global $db;
+        $stmt = $db->prepare("DELETE FROM friend  WHERE id_user2='$id_me' AND id_user1='$id_user'");
+        $result = $stmt->execute();
+        return $result;
     }
 }
