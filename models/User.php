@@ -13,12 +13,21 @@ class User
         global $db;
     }
 
-    public function getAllUsers()
+    public function getAllUsers($myId)
     {
         global $db;
-        $result = $db->query("SELECT * FROM users");
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
+
+    // Sélectionner les utilisateurs qui ne sont pas déjà amis
+    $stmt = $db->prepare("SELECT * FROM users WHERE id_user !=$myId AND id_user NOT IN (SELECT id_user2 FROM friend WHERE id_user1 = $myId) AND id_user NOT IN (SELECT id_user1 FROM friend WHERE id_user2 = $myId)");
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $users = $result->fetch_all(MYSQLI_ASSOC);
+
+    $stmt->close();
+
+    return $users;
+}
     public function check_email($email)
     {
         global $db;
