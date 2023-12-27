@@ -33,12 +33,23 @@ class Room
                 $db->rollback();
                 return false;
             }
-            
+
             $stmt2->close();
         }
 
         $db->commit();
         return true;
+    }
+
+    public function getRooms($myId)
+    {
+        global $db;
+        $stmt = $db->prepare("SELECT * FROM rooms WHERE id_room IN (SELECT id_r FROM room WHERE id_u = ?)");
+        $stmt->bind_param("i", $myId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rooms = $result->fetch_all(MYSQLI_ASSOC);
+        return $rooms;
     }
 
 }
