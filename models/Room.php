@@ -67,5 +67,24 @@ class Room
         return $rooms;
     }
 
+    public function sendMessage($myId, $id, $message)
+    {
+        global $db;
+        $stmt = $db->prepare("INSERT INTO message (id_user, id_room, text) VALUES ('$myId','$id','$message')");
+        $stmt->execute();
+        $stmt->close(); 
+    }
+
+    public function getMessages($id)
+    {
+        global $db;
+        $stmt = $db->prepare("SELECT * FROM message WHERE id_room=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $messages = $result->fetch_all(MYSQLI_ASSOC);
+        return $messages;
+    }
+
 
 }
