@@ -56,6 +56,16 @@ class Room
         return $rooms;
     }
 
+    public function getRoomById($id)
+    {
+        global $db;
+        $stmt = $db->prepare("SELECT * FROM rooms WHERE id_room =?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rooms = $result->fetch_all(MYSQLI_ASSOC);
+        return $rooms;
+    }
 
 
 }
