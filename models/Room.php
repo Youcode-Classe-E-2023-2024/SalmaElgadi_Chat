@@ -68,12 +68,13 @@ class Room
     }
 
     public function sendMessage($myId, $id, $message)
-    {
-        global $db;
-        $stmt = $db->prepare("INSERT INTO message (id_user, id_room, text) VALUES ('$myId','$id','$message')");
-        $stmt->execute();
-        $stmt->close(); 
-    }
+{
+    global $db;
+    $stmt = $db->prepare("INSERT INTO message (id_user, id_room, text) VALUES (?, ?, ?)");
+    $stmt->bind_param("iis", $myId, $id, $message);
+    $stmt->execute();
+    $stmt->close(); 
+}
 
     public function getMessages($id)
     {
