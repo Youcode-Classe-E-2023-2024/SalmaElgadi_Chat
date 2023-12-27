@@ -15,6 +15,8 @@ if(isset($_POST['addRoom']))
     $title = $_POST['title'];
     $created_by = $_SESSION['id_user'];
     $selectedUsers = isset($_POST['selected_users']) ? $_POST['selected_users'] : [];
+    
+    $selectedUsers[] = $created_by;
     if ($Room->addRoom($title,$created_by, $selectedUsers)) 
     {
         header("location:index.php?page=page1");
