@@ -44,12 +44,18 @@ class Room
     public function getRooms($myId)
     {
         global $db;
-        $stmt = $db->prepare("SELECT * FROM rooms WHERE id_room IN (SELECT id_r FROM room WHERE id_u = ?)");
+        $stmt = $db->prepare("SELECT rooms.*, COUNT(room.id_u) AS member_count
+                                FROM rooms
+                                LEFT JOIN room ON rooms.id_room = room.id_r
+                                WHERE id_room IN (SELECT id_r FROM room WHERE id_u = ?)
+                                GROUP BY rooms.id_room");
         $stmt->bind_param("i", $myId);
         $stmt->execute();
         $result = $stmt->get_result();
         $rooms = $result->fetch_all(MYSQLI_ASSOC);
         return $rooms;
     }
+
+
 
 }
