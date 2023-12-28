@@ -13,48 +13,26 @@ if (!isset($_SESSION['id_user'])) {
         <div class="h-3/4 overflow-auto">
     <div class="fixed " style="width: 35rem;">
         <div class="py-2 rounded-md px-3 flex flex-row justify-between bg-purple-200 items-center">
-
-                <!-- Room name -->
-                <div class="flex items-center">
-                    <div>
-                        <img class="w-10 h-10 rounded-full" src="<?= PATH ?>assets/image/22072231_6563382.jpg" />
-                    </div>
-                    <div class="ml-4">
-                        <?php
-                        foreach ($rooms as $room) {
-                        ?>
-                            <p class="text-grey-darkest">
-                                <?php echo $room['title']; ?>
-                            </p>
-                            <input type="hidden" id="roomId" value="<?php echo $room['id_room']; ?>" >
-                        <?php
-                        }
-                        ?>
-                    </div>
+            <!-- Room name -->
+            <div class="flex items-center">
+                <div>
+                    <img class="w-10 h-10 rounded-full" src="<?= PATH ?>assets/image/22072231_6563382.jpg" />
                 </div>
-                <!--  -->
+                <div class="ml-4">
+                    <p class="text-grey-darkest">
+                        <?= $room['title']; ?>
+                    </p>
+                </div>
+            </div>
+            <!--  -->
         </div>
     </div>
 
     <div id="chatContainer">
-
+        <!-- Ajax go there -->
     </div>
-        <?php
-        foreach ($messages as $message) {
-        ?>
-
-            <div class="flex w-full mt-2 space-x-3 max-w-xs">
-				<div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-				<div>
-					<div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
-						<p class="text-sm"><?php echo $message['text']; ?></p>
-					</div>
-				</div>
-			</div>
-        <?php
-        }
-        ?>
-        </div>
+        
+    </div>
 
         <!-- inputs -->
         <div class="bg-purple-100  flex content-end	 gap-2 w-full  p-4">
@@ -71,4 +49,5 @@ if (!isset($_SESSION['id_user'])) {
 
 </div>
 </div>
+
 
