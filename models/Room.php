@@ -63,8 +63,8 @@ class Room
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $rooms = $result->fetch_all(MYSQLI_ASSOC);
-        return $rooms;
+        $room = $result->fetch_assoc();
+        return $room;
     }
 
     public function sendMessage($myId, $id, $message)
