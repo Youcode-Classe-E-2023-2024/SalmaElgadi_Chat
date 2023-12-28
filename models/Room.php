@@ -79,11 +79,7 @@ class Room
     public function getMessages($id)
     {
         global $db;
-        $stmt = $db->prepare("SELECT * 
-                            FROM message
-                            INNER JOIN friend ON message.id_user = friend.id_user2
-                            WHERE message.id_room = ? 
-                            AND friend.block = 0");
+        $stmt = $db->prepare("SELECT * FROM message WHERE id_room=?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
