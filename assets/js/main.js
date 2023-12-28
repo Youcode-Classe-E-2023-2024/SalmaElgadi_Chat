@@ -5,7 +5,8 @@
         const roomId = roomIdInput.value;
     
         if (messageText !== '') {
-            fetch(`index.php?page=message&id=${id}`, {
+            
+            fetch(`index.php?page=message`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -19,12 +20,15 @@
             .then(response => {
                 console.log('Server response:', response);
                 if (response.success) {
-                    fetchDataAndDisplay();                }
+                    fetchDataAndDisplay();  
+                              
+                }
             })
             .catch(error => console.error('Error', error));
     
             document.getElementById('messageInput').value = '';
         }
+       
     }
     // setInterval(()=>{yy()}, 5000)
     
@@ -56,7 +60,7 @@
     }
 
     function displayData(messages) {
-        console.log('Displaying data:', messages);
+        // console.log('Displaying data:', messages);
 
         document.getElementById('chatContainer').innerHTML = messages;
     }
