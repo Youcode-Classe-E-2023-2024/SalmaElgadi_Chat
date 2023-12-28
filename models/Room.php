@@ -72,19 +72,30 @@ class Room
     global $db;
     $stmt = $db->prepare("INSERT INTO message (id_user, id_room, text) VALUES (?, ?, ?)");
     $stmt->bind_param("iis", $myId, $id, $message);
-    $stmt->execute();
-    $stmt->close(); 
+    return $stmt->execute();
+    
 }
 
     public function getMessages($id)
     {
         global $db;
-        $stmt = $db->prepare("SELECT * FROM message WHERE id_room=?");
+        $stmt = $db->prepare("SELECT * 
+                            FROM message
+                            INNER JOIN friend ON message.id_user = friend.id_user2
+                            WHERE message.id_room = ? 
+                            AND friend.block = 0");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $messages = $result->fetch_all(MYSQLI_ASSOC);
         return $messages;
+    }
+
+    public function quitterRoom($roomId, $myId)
+    {
+        global $db;
+        $stmt = $db->prepare("DELETE FROM room WHERE id_r = '$roomId' AND id_u = '$myId'");
+        return $stmt->execute();
     }
 
 
