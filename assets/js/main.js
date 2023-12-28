@@ -1,11 +1,11 @@
-  
+
     function sendMessage() {
         const messageText = document.getElementById('messageInput').value.trim();
         const roomIdInput = document.getElementById('roomId');
         const roomId = roomIdInput.value;
     
         if (messageText !== '') {
-            fetch('index.php?page=chat', {
+            fetch(`index.php?page=message&id=${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -19,47 +19,46 @@
             .then(response => {
                 console.log('Server response:', response);
                 if (response.success) {
-                    displayData(response.messages);
-                }
+                    fetchDataAndDisplay();                }
             })
             .catch(error => console.error('Error', error));
     
             document.getElementById('messageInput').value = '';
         }
     }
+    // setInterval(()=>{yy()}, 5000)
     
-    //     function displayData(messages) {
-    //     console.log('Displaying data:', messages);
+    function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+        return pair[1];
+        }
+    } 
+    // alert('Query Variable ' + variable + ' not found');
+    }
+
+
     
-    //     const rows = messages.map((message) => {
-    //             return (`
-    //             <div class="flex w-full mt-2 space-x-3 max-w-xs">
-    // 				<div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-300"></div>
-    // 				<div>
-    // 					<div class="bg-gray-300 p-3 rounded-r-lg rounded-bl-lg">
-    //                     <p class="text-sm">${message.text}</p>
-    //                     </div>
-    // 				</div>
-    // 			</div>
-    //         `);
-    //     })
-    //     document.getElementById('chatContainer').innerHTML = rows.join('');
-    
-    //     function ff(){
-    //         var urlParams = new URLSearchParams(window.location.search);
-    //         var id = urlParams.get('id');
-    //         var url1 = `index.php?page=message&room=${id}`;
-            
-    //         fetch(url1, {
-    //             method: 'POST',
-    //         })
-    //         .then((responseData) => {
-    //           if(responseData){
-    //                (responseData.json().then((data)=> {
-    //                 console.log(data)
-    //                })
-    //             )}
-    //         })
-    //     }
-    // }
-    
+    function fetchDataAndDisplay() {
+        var id = getQueryVariable("id");
+
+        fetch(`index.php?page=message&id=${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },    
+        })
+        .then(response => response.text().then(html => displayData(html))) 
+        .catch(error => console.error('Error', error));
+    }
+
+    function displayData(messages) {
+        console.log('Displaying data:', messages);
+
+        document.getElementById('chatContainer').innerHTML = messages;
+    }
+
+    fetchDataAndDisplay();
