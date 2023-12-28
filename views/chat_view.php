@@ -14,6 +14,7 @@ if (!isset($_SESSION['id_user'])) {
     <div class="fixed " style="width: 35rem;">
         <div class="py-2 rounded-md px-3 flex flex-row justify-between bg-purple-200 items-center">
             <!-- Room name -->
+            <div class="flex gap-72">
             <div class="flex items-center">
                 <div>
                     <img class="w-10 h-10 rounded-full" src="<?= PATH ?>assets/image/22072231_6563382.jpg" />
@@ -21,8 +22,17 @@ if (!isset($_SESSION['id_user'])) {
                 <div class="ml-4">
                     <p class="text-grey-darkest">
                         <?= $room['title']; ?>
+                        <input type="hidden" id="roomId" value="<?= $room['id_room'] ?>">
                     </p>
                 </div>
+            </div>   
+            <form action="index.php?page=chat" method="post">
+                <div class="-mr-1 ">
+                    <input type="hidden" name="myId" value="<?= $_SESSION['id_user'] ?>"> 
+                    <input type="hidden" name="roomId" value="<?= $room['id_room'] ?>">
+                    <button name="quitterRoom" class="bg-purple-600 text-white font-medium py-1 px-2 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-purple-200" >Quitter room</button>
+                </div>
+            </form> 
             </div>
             <!--  -->
         </div>
