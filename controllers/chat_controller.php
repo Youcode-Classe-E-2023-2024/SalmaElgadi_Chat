@@ -19,14 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         echo json_encode(["success" => false]);
     }
     die();
-    }else 
-    {
-    $Room = new Room();
-    $id = $_GET['id'];
-    $rooms = $Room->getRoomById($id);
-    $messages = $Room->getMessages($id);
-
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        echo json_encode(["success" => true, "messages" => $messages]);
     }
+    else{ 
+        $Room = new Room();
+    $id = $_GET['id'];
+    $messages = $Room->getMessages($id);
+    echo json_encode(["messages" => $messages]);
+    $rooms = $Room->getRoomById($id);
     }
