@@ -31,13 +31,21 @@ if(isset($_POST['supprimer']))
     $id_me = $_POST['myid'];
     $id_user = $_POST['friendid'];
     if($Invitation->deleteFriend($id_me, $id_user)){
-        echo'hhh';
+        // echo'hhh';
     }
 else{
     echo 'hhhaaaaaaaaaa';
 }
 
 }
+
+if(isset($_POST['blocker']))
+{
+    $id_me = $_POST['myid'];
+    $id_user = $_POST['friendid'];
+    $Invitation->blockFriend($id_me, $id_user);
+}
+
 
 // $myId = SESSION['id_user'];
 $amis = $Invitation->getFriends($myId);
