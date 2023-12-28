@@ -77,7 +77,7 @@ class Invitation
     {
         global $db;
         $stmt = $db->prepare("DELETE FROM friend  WHERE id_user2='$id_me' AND id_user1='$id_user'");
-        $result = $stmt->execute();
-        return $result;
+        $results = $stmt->execute();
+        return $results;
     }
 }
