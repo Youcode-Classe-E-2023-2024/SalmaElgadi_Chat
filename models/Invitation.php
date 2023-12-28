@@ -80,4 +80,14 @@ class Invitation
         $results = $stmt->execute();
         return $results;
     }
+
+    public function blockFriend($id_me, $id_user)
+    {
+        global $db;
+        $stmt = $db->prepare("UPDATE friend SET block = '1' WHERE id_user2='$id_me' AND id_user1='$id_user'");
+        $results = $stmt->execute();
+        return $results;
+    }
+
+
 }
