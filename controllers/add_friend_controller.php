@@ -17,7 +17,7 @@ $users = $User->getAllUsers($myId);
     // $Invitation->send_invitation($id_me, $id_user);
     if($Invitation->send_invitation($id_me, $id_user))
     {
-        echo'wee';
+        // echo'wee';
     }
     else{
         echo 'laaa';
